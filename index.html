@@ -1,64 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Village WiFi</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Herotel Wi-Fi Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      padding: 40px 20px;
+    }
 
-body{
-font-family:Arial;
-text-align:center;
-background:#f2f2f2;
-padding-top:50px;
-}
+    .container {
+      background: #fff;
+      max-width: 360px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
 
-.box{
-background:white;
-width:320px;
-margin:auto;
-padding:25px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
+    img.logo {
+      width: 150px;
+      margin-bottom: 20px;
+    }
 
-button{
-width:100%;
-padding:15px;
-margin-top:10px;
-border:none;
-background:#32cd32;
-color:white;
-font-size:16px;
-border-radius:6px;
-}
+    h1 {
+      color: #e60028; /* Herotel red */
+      margin-bottom: 15px;
+    }
 
-</style>
+    p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .r5 { background: #00c853; }      /* Green for R5 */
+    .r10 { background: #2962ff; }     /* Blue for R10 */
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .footer {
+      font-size: 12px;
+      color: #555;
+      margin-top: 20px;
+    }
+
+    a.support {
+      color: #e60028;
+      text-decoration: none;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="box">
+  <div class="container">
+    <!-- Herotel Logo -->
+    <img src="https://www.herotel.co.za/wp-content/themes/herotel/images/herotel-logo.svg" alt="Herotel Logo" class="logo">
 
-<h2>Village WiFi</h2>
+    <h1>Welcome to Herotel Wi-Fi</h1>
+    <p>Select your internet package to get started:</p>
 
-<p>Select Package</p>
+    <!-- Payment Buttons -->
+    <button class="r5" onclick="payR5()">R5 - 24 Hours Access</button>
+    <button class="r10" onclick="payR10()">R10 - Unlimited Today</button>
 
-<button onclick="pay5()">R5 - 24 Hours</button>
-<button onclick="pay10()">R10 - Unlimited Today</button>
+    <div class="footer">
+      <p>Need help? Contact <a href="https://wa.me/2782XXXXXXX" class="support">WhatsApp Support</a></p>
+    </div>
+  </div>
 
-</div>
+  <script>
+    // Temporary dummy links for testing
+    const bobPayR5 = "https://example.com/dummy-r5";
+    const bobPayR10 = "https://example.com/dummy-r10";
 
-<script>
+    function payR5() {
+      window.location.href = bobPayR5;
+    }
 
-function pay5(){
-window.location="https://www.payfast.co.za/eng/process?cmd=_paynow&amount=5";
-}
-
-function pay10(){
-window.location="https://www.payfast.co.za/eng/process?cmd=_paynow&amount=10";
-}
-
-</script>
+    function payR10() {
+      window.location.href = bobPayR10;
+    }
+  </script>
 
 </body>
 </html>
