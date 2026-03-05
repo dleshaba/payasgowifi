@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Village WiFi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+body{
+font-family:Arial;
+text-align:center;
+background:#f2f2f2;
+padding-top:50px;
+}
+
+.box{
+background:white;
+width:320px;
+margin:auto;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+button{
+width:100%;
+padding:15px;
+margin-top:10px;
+border:none;
+background:#32cd32;
+color:white;
+font-size:16px;
+border-radius:6px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Village WiFi</h2>
+
+<p>Select Package</p>
+
+<button onclick="pay5()">R5 - 24 Hours</button>
+<button onclick="pay10()">R10 - Unlimited Today</button>
+
+</div>
+
+<script>
+
+function pay5(){
+window.location="https://www.payfast.co.za/eng/process?cmd=_paynow&amount=5";
+}
+
+function pay10(){
+window.location="https://www.payfast.co.za/eng/process?cmd=_paynow&amount=10";
+}
+
+</script>
+
+</body>
+</html>
