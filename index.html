@@ -1,102 +1,170 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Herotel Wi-Fi Portal</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      text-align: center;
-      padding: 40px 20px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Herotel Wi-Fi Portal</title>
 
-    .container {
-      background: #fff;
-      max-width: 360px;
-      margin: auto;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
+<style>
 
-    img.logo {
-      width: 150px;
-      margin-bottom: 20px;
-    }
+body{
+font-family: Arial, sans-serif;
+background:#f4f4f4;
+margin:0;
+padding:30px;
+text-align:center;
+}
 
-    h1 {
-      color: #e60028; /* Herotel red */
-      margin-bottom: 15px;
-    }
+.container{
+max-width:420px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
 
-    p {
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
+.logo{
+width:140px;
+margin-bottom:20px;
+}
 
-    button {
-      width: 100%;
-      padding: 15px;
-      margin: 10px 0;
-      font-size: 16px;
-      border: none;
-      border-radius: 6px;
-      color: white;
-      cursor: pointer;
-    }
+h1{
+color:#f26522;
+margin-bottom:10px;
+}
 
-    .r5 { background: #00c853; }      /* Green for R5 */
-    .r10 { background: #2962ff; }     /* Blue for R10 */
+.subtitle{
+color:#555;
+margin-bottom:25px;
+}
 
-    button:hover {
-      opacity: 0.9;
-    }
+.package{
+background:#fafafa;
+border:1px solid #eee;
+border-radius:6px;
+padding:15px;
+margin-bottom:15px;
+}
 
-    .footer {
-      font-size: 12px;
-      color: #555;
-      margin-top: 20px;
-    }
+.price{
+font-size:18px;
+font-weight:bold;
+color:#f26522;
+}
 
-    a.support {
-      color: #e60028;
-      text-decoration: none;
-    }
-  </style>
+button{
+width:100%;
+padding:14px;
+margin-top:10px;
+border:none;
+border-radius:6px;
+background:#f26522;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+.result{
+margin-top:20px;
+font-size:16px;
+}
+
+.support{
+margin-top:20px;
+font-size:14px;
+}
+
+.footer{
+margin-top:25px;
+font-size:13px;
+color:#666;
+}
+
+.footer a{
+color:#f26522;
+text-decoration:none;
+margin:0 6px;
+}
+
+</style>
+
 </head>
+
 <body>
 
-  <div class="container">
-    <!-- Herotel Logo -->
-    <img src="images/herotel-logo.png" alt="Herotel Logo" class="logo">
-    
-    <h1>Welcome to Herotel Wi-Fi</h1>
-    <p>Select your internet package to get started:</p>
+<div class="container">
 
-    <!-- Payment Buttons -->
-    <button class="r5" onclick="payR5()">R5 - 24 Hours Access</button>
-    <button class="r10" onclick="payR10()">R10 - Unlimited Today</button>
+<img src="logo.png" class="logo" alt="WiFi Logo">
 
-    <div class="footer">
-      <p>Need help? Contact <a href="https://wa.me/2782XXXXXXX" class="support">WhatsApp Support</a></p>
-    </div>
-  </div>
+<h1>Herotel Wi-Fi</h1>
 
-  <script>
-    // Temporary dummy links for testing
-    const bobPayR5 = "https://example.com/dummy-r5";
-    const bobPayR10 = "https://example.com/dummy-r10";
+<p class="subtitle">
+Fast and affordable hotspot internet.
+Choose a package below to get connected.
+</p>
 
-    function payR5() {
-      window.location.href = bobPayR5;
-    }
+<div class="package">
+<div class="price">R5 – 24 Hour Access</div>
+<button onclick="buy('R5')">Buy Now</button>
+</div>
 
-    function payR10() {
-      window.location.href = bobPayR10;
-    }
-  </script>
+<div class="package">
+<div class="price">R10 – Unlimited Today</div>
+<button onclick="buy('R10')">Buy Now</button>
+</div>
+
+<div class="package">
+<div class="price">R20 – 7 Day Access</div>
+<button onclick="buy('R20')">Buy Now</button>
+</div>
+
+<div id="result" class="result"></div>
+
+<div class="support">
+Need help?  
+<a href="https://wa.me/27820000000">Chat on WhatsApp</a>
+</div>
+
+<div class="footer">
+<a href="refund.html">Refund Policy</a> |
+<a href="terms.html">Terms of Service</a>
+</div>
+
+</div>
+
+<script>
+
+function buy(package){
+
+const result=document.getElementById("result");
+
+result.innerHTML="Processing payment...";
+
+setTimeout(function(){
+
+let code="";
+
+if(package==="R5"){code="24H-TEST-123";}
+if(package==="R10"){code="DAY-TEST-456";}
+if(package==="R20"){code="WEEK-TEST-789";}
+
+result.innerHTML=
+"<h3>Payment Successful</h3>"+
+"<p>Your Wi-Fi access code:</p>"+
+"<strong style='font-size:20px;color:#f26522'>"+code+"</strong>"+
+"<p>Enter this code on the Wi-Fi login page.</p>";
+
+},1500);
+
+}
+
+</script>
 
 </body>
 </html>
