@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Herotel Wi-Fi Portal</title>
 
-<style>
+<script src="https://js.yoco.com/sdk/v1/yoco-sdk-web.js"></script>
 
+<style>
 body{
 font-family: Arial, sans-serif;
 background:#f4f4f4;
@@ -70,6 +70,11 @@ button:hover{
 opacity:0.9;
 }
 
+button:disabled{
+background:#ccc;
+cursor:not-allowed;
+}
+
 .result{
 margin-top:20px;
 font-size:16px;
@@ -91,7 +96,6 @@ color:#f26522;
 text-decoration:none;
 margin:0 6px;
 }
-
 </style>
 
 </head>
@@ -105,7 +109,7 @@ margin:0 6px;
 <h1>Herotel Wi-Fi</h1>
 
 <p class="subtitle">
-Fast and affordable hotspot internet.
+Fast and affordable hotspot internet.<br>
 Choose a package below to get connected.
 </p>
 
@@ -140,28 +144,82 @@ Need help?
 
 <script>
 
+const yoco = new window.YocoSDK({
+  publicKey: "pk_live_28f2e5a01W0dvB871574"
+});
+
+let isProcessing = false;
+
 function buy(package){
 
-const result=document.getElementById("result");
+  if(isProcessing) return;
 
-result.innerHTML="Processing payment...";
+  const result = document.getElementById("result");
 
-setTimeout(function(){
+  let amount = 0;
+  let description = "";
 
-let code="";
+  if(package === "R5"){
+    amount = 500;
+    description = "24 Hour Access";
+  }
 
-if(package==="R5"){code="24H-TEST-123";}
-if(package==="R10"){code="DAY-TEST-456";}
-if(package==="R20"){code="WEEK-TEST-789";}
+  if(package === "R10"){
+    amount = 1000;
+    description = "Unlimited Today";
+  }
 
-result.innerHTML=
-"<h3>Payment Successful</h3>"+
-"<p>Your Wi-Fi access code:</p>"+
-"<strong style='font-size:20px;color:#f26522'>"+code+"</strong>"+
-"<p>Enter this code on the Wi-Fi login page.</p>";
+  if(package === "R20"){
+    amount = 2000;
+    description = "7 Day Access";
+  }
 
-},1500);
+  isProcessing = true;
 
+  yoco.showPopup({
+    amountInCents: amount,
+    currency: "ZAR",
+    name: "Herotel WiFi",
+    description: description,
+
+    callback: function (resultData) {
+
+      if (resultData.error) {
+        result.innerHTML = "<p style='color:red;'>❌ Payment failed. Try again.</p>";
+        isProcessing = false;
+      } else {
+
+        result.innerHTML = "⏳ Processing payment...";
+
+        fetch("https://pay.yoco.com/paygowifi", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            token: resultData.id,
+            amount: amount
+          })
+        })
+        .then(res => res.json())
+        .then(data => {
+
+          result.innerHTML =
+          "<h3>✅ Payment Successful</h3>" +
+          "<p>Your Wi-Fi access code:</p>" +
+          "<strong style='font-size:22px;color:#f26522'>" + data.voucher + "</strong>" +
+          "<p>Enter this code on the Wi-Fi login page.</p>";
+
+          isProcessing = false;
+        })
+        .catch(() => {
+          result.innerHTML = "<p style='color:red;'>⚠️ Error processing payment.</p>";
+          isProcessing = false;
+        });
+
+      }
+    }
+  });
 }
 
 </script>
