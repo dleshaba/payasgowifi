@@ -182,42 +182,52 @@ function buy(package){
     name: "Herotel WiFi",
     description: description,
 
-    callback: function (resultData) {
+callback: function (resultData) {
 
-      if (resultData.error) {
-        result.innerHTML = "<p style='color:red;'>❌ Payment failed. Try again.</p>";
-        isProcessing = false;
-      } else {
+  if (resultData.error) {
+    result.innerHTML = "<p style='color:red;'>❌ Payment failed. Try again.</p>";
+    isProcessing = false;
+  } else {
 
-        result.innerHTML = "⏳ Processing payment...";
+    // ✅ SUCCESS MESSAGE (NO BACKEND)
+    result.innerHTML =
+    "<h3>✅ Payment Successful</h3>" +
+    "<p>Transaction ID:</p>" +
+    "<strong style='font-size:22px;color:#f26522'>" + resultData.id + "</strong>" +
+    "<p>WiFi will be activated shortly.</p>";
 
-        fetch("https://pay.yoco.com/paygowifi", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            token: resultData.id,
-            amount: amount
-          })
-        })
-        .then(res => res.json())
-        .then(data => {
+    console.log("Payment success:", resultData);
 
-          result.innerHTML =
-          "<h3>✅ Payment Successful</h3>" +
-          "<p>Your Wi-Fi access code:</p>" +
-          "<strong style='font-size:22px;color:#f26522'>" + data.voucher + "</strong>" +
-          "<p>Enter this code on the Wi-Fi login page.</p>";
+    isProcessing = false;
+  }
+//}
+        // fetch("https://pay.yoco.com/paygowifi", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json"
+        //   },
+        //   body: JSON.stringify({
+        //     token: resultData.id,
+        //     amount: amount
+        //   })
+        // })
+        // .then(res => res.json())
+        // .then(data => {
 
-          isProcessing = false;
-        })
-        .catch(() => {
-          result.innerHTML = "<p style='color:red;'>⚠️ Error processing payment.</p>";
-          isProcessing = false;
-        });
+        //   result.innerHTML =
+        //   "<h3>✅ Payment Successful</h3>" +
+        //   "<p>Your Wi-Fi access code:</p>" +
+        //   "<strong style='font-size:22px;color:#f26522'>" + data.voucher + "</strong>" +
+        //   "<p>Enter this code on the Wi-Fi login page.</p>";
 
-      }
+        //   isProcessing = false;
+        // })
+        // .catch(() => {
+        //   result.innerHTML = "<p style='color:red;'>⚠️ Error processing payment.</p>";
+        //   isProcessing = false;
+        // });
+
+ //     }
     }
   });
 }
