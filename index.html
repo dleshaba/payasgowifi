@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Herotel Wi-Fi Portal</title>
 
-<script src="https://js.yoco.com/sdk/v1/yoco-sdk-web.js"></script>
-
 <style>
 body{
 font-family: Arial, sans-serif;
@@ -145,19 +143,14 @@ Need help?
 <script>
 
 const yoco = new window.YocoSDK({
-  publicKey: "pk_live_28f2e5a01W0dvB871574"
+  publicKey: "sk_test_50768291gE04Koef353403ea0cbe"
 });
 
 let isProcessing = false;
 
 function buy(package){
 
-  if(isProcessing) return;
-
-  const result = document.getElementById("result");
-
   let amount = 0;
-  let description = "";
 
   if(package === "R5") amount = 500;
   if(package === "R10") amount = 1000;
@@ -171,43 +164,14 @@ function buy(package){
     body: JSON.stringify({ amount: amount })
   })
   .then(res => res.json())
-  .then(data => {
-    const checkout = JSON.parse(data);
+  .then(checkout => {
     window.location.href = checkout.redirectUrl;
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Payment failed to start");
   });
 }
-
-//}
-        // fetch("https://pay.yoco.com/paygowifi", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json"
-        //   },
-        //   body: JSON.stringify({
-        //     token: resultData.id,
-        //     amount: amount
-        //   })
-        // })
-        // .then(res => res.json())
-        // .then(data => {
-
-        //   result.innerHTML =
-        //   "<h3>✅ Payment Successful</h3>" +
-        //   "<p>Your Wi-Fi access code:</p>" +
-        //   "<strong style='font-size:22px;color:#f26522'>" + data.voucher + "</strong>" +
-        //   "<p>Enter this code on the Wi-Fi login page.</p>";
-
-        //   isProcessing = false;
-        // })
-        // .catch(() => {
-        //   result.innerHTML = "<p style='color:red;'>⚠️ Error processing payment.</p>";
-        //   isProcessing = false;
-        // });
-
- //     }
-    //}
-  //});
-//}
 
 </script>
 
