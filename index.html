@@ -141,9 +141,6 @@ Need help?
 </div>
 
 <script>
-
-let isProcessing = false;
-
 function buy(package){
 
   let amount = 0;
@@ -159,18 +156,24 @@ function buy(package){
     },
     body: JSON.stringify({ amount: amount })
   })
-  .then(res => res.json())
+  .then(res => {
+    console.log("STATUS:", res.status);
+    return res.json();
+  })
   .then(data => {
-  console.log("Yoco response:", data);
-  window.location.href = data.redirectUrl;
-})
+    console.log("RESPONSE:", data);
+
+    if(data.redirectUrl){
+      window.location.href = data.redirectUrl;
+    } else {
+      alert("No redirect URL received");
+    }
+  })
   .catch(err => {
-    console.error(err);
+    console.error("FETCH ERROR:", err);
     alert("Payment failed to start");
   });
 }
-
 </script>
-
 </body>
 </html>
