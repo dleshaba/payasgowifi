@@ -159,47 +159,24 @@ function buy(package){
   let amount = 0;
   let description = "";
 
-  if(package === "R5"){
-    amount = 500;
-    description = "24 Hour Access";
-  }
+  if(package === "R5") amount = 500;
+  if(package === "R10") amount = 1000;
+  if(package === "R20") amount = 2000;
 
-  if(package === "R10"){
-    amount = 1000;
-    description = "Unlimited Today";
-  }
+  fetch("https://localhost:7144/api/payment/create-checkout", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ amount: amount })
+  })
+  .then(res => res.json())
+  .then(data => {
+    const checkout = JSON.parse(data);
+    window.location.href = checkout.redirectUrl;
+  });
+}
 
-  if(package === "R20"){
-    amount = 2000;
-    description = "7 Day Access";
-  }
-
-  isProcessing = true;
-
-  yoco.showPopup({
-    amountInCents: amount,
-    currency: "ZAR",
-    name: "Herotel WiFi",
-    description: description,
-
-callback: function (resultData) {
-
-  if (resultData.error) {
-    result.innerHTML = "<p style='color:red;'>❌ Payment failed. Try again.</p>";
-    isProcessing = false;
-  } else {
-
-    // ✅ SUCCESS MESSAGE (NO BACKEND)
-    result.innerHTML =
-    "<h3>✅ Payment Successful</h3>" +
-    "<p>Transaction ID:</p>" +
-    "<strong style='font-size:22px;color:#f26522'>" + resultData.id + "</strong>" +
-    "<p>WiFi will be activated shortly.</p>";
-
-    console.log("Payment success:", resultData);
-
-    isProcessing = false;
-  }
 //}
         // fetch("https://pay.yoco.com/paygowifi", {
         //   method: "POST",
@@ -228,9 +205,9 @@ callback: function (resultData) {
         // });
 
  //     }
-    }
-  });
-}
+    //}
+  //});
+//}
 
 </script>
 
