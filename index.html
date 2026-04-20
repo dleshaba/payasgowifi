@@ -3,41 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Herotel Wi-Fi Portal</title>
+<title>Herotel Wi-Fi</title>
 
 <style>
 body{
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg,#f4f4f4,#e9eef3);
+    font-family: 'Segoe UI', Arial;
+    background:#f4f6f9;
     margin:0;
-    padding:20px;
-}
-
-/* MAIN CARD */
-.container{
-    max-width:420px;
-    margin:auto;
-    background:white;
-    padding:25px;
-    border-radius:16px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
 
 /* HEADER */
+.header{
+    background:white;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid #eee;
+}
+
 .logo{
-    width:130px;
+    height:30px;
+}
+
+.hotspot-id{
+    font-weight:bold;
+    color:#333;
+}
+
+/* MAIN */
+.container{
+    max-width:420px;
+    margin:auto;
+    padding:15px;
+}
+
+/* STATUS CARD */
+.status-card{
+    background:#111;
+    color:white;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:15px;
+}
+
+.status-row{
+    display:flex;
+    justify-content:space-between;
     margin-bottom:10px;
 }
 
-h1{
-    color:#f26522;
-    margin:5px 0;
+.badge{
+    background:#ff4d4d;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:12px;
 }
 
-.subtitle{
-    color:#666;
-    font-size:14px;
-    margin-bottom:20px;
+/* SECTION */
+.card{
+    background:white;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
 
 /* INPUT */
@@ -47,185 +76,177 @@ h1{
     border-radius:10px;
     border:1px solid #ddd;
     margin-top:10px;
-    font-size:15px;
 }
 
 /* BUTTON */
-button{
+.btn{
     width:100%;
     padding:14px;
-    margin-top:12px;
+    margin-top:10px;
     border:none;
     border-radius:10px;
     background:#f26522;
     color:white;
-    font-size:16px;
     font-weight:bold;
     cursor:pointer;
-    transition:0.2s;
 }
 
-button:hover{
-    transform:translateY(-1px);
-    box-shadow:0 6px 15px rgba(242,101,34,0.3);
-}
-
-/* SECTION TITLE */
-.section-title{
-    text-align:left;
-    font-weight:bold;
-    margin:20px 0 10px;
-    color:#333;
-}
-
-/* PACKAGES */
-.package{
-    background:#fafafa;
-    border:1px solid #eee;
-    border-radius:12px;
-    padding:15px;
-    margin-bottom:12px;
+/* TIME BLOCKS */
+.time{
     display:flex;
     justify-content:space-between;
+}
+
+.time-box{
+    background:#f3e1d7;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+    width:30%;
+    font-weight:bold;
+}
+
+/* PRICES */
+.price-item{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:15px;
     align-items:center;
 }
 
-.price{
+.price-tag{
+    background:#e0f0e9;
+    padding:8px 12px;
+    border-radius:8px;
     font-weight:bold;
-    color:#f26522;
 }
 
 /* ADVERT */
-.advert{
-    margin-top:20px;
+.ad{
     background:linear-gradient(135deg,#f26522,#ff8a4c);
     color:white;
-    padding:18px;
-    border-radius:14px;
-    text-align:left;
+    border-radius:12px;
+    padding:15px;
 }
 
-.advert h3{
-    margin:0;
-}
-
-.advert p{
-    font-size:13px;
-    margin:8px 0;
-}
-
-.advert a{
+.ad a{
     display:inline-block;
     margin-top:10px;
-    padding:10px 14px;
     background:white;
     color:#f26522;
+    padding:10px;
     border-radius:8px;
     text-decoration:none;
     font-weight:bold;
 }
 
-/* FOOTER */
-.footer{
-    margin-top:20px;
-    font-size:12px;
-    text-align:center;
-    color:#888;
+/* HELP */
+.help{
+    font-size:14px;
 }
 </style>
-
 </head>
 
 <body>
 
+<!-- HEADER -->
+<div class="header">
+    <img src="images/herotel-logo.png" class="logo">
+    <div class="hotspot-id">Hotspot</div>
+</div>
+
 <div class="container">
 
-<img src="images/herotel-logo.png" class="logo">
-
-<h1>Herotel Wi-Fi</h1>
-<p class="subtitle">Fast. Affordable. Reliable internet access.</p>
-
-<!-- 🔑 VOUCHER -->
-<div class="section-title">Have a Voucher?</div>
-
-<form method="GET" action="$PORTAL_ACTION$">
-    <input class="input" type="text" name="voucher" placeholder="Enter voucher code" required>
-
-    <input type="hidden" name="clientMac" value="$CLIENT_MAC$">
-    <input type="hidden" name="apMac" value="$AP_MAC$">
-    <input type="hidden" name="ssidName" value="$SSID$">
-    <input type="hidden" name="redirectUrl" value="$REDIRECT_URL$">
-
-    <button type="submit">Connect to Internet</button>
-</form>
-
-<!-- 💰 BUY -->
-<div class="section-title">Buy Data</div>
-
-<div class="package">
-    <div>
-        <div class="price">R5</div>
-        <small>24 Hours</small>
+<!-- STATUS -->
+<div class="status-card">
+    <div class="status-row">
+        <div>Connection Status</div>
+        <div class="badge">Offline</div>
     </div>
-    <button onclick="buy('R5')">Buy</button>
+    <div>Device: $CLIENT_MAC$</div>
 </div>
 
-<div class="package">
-    <div>
-        <div class="price">R10</div>
-        <small>Unlimited Today</small>
-    </div>
-    <button onclick="buy('R10')">Buy</button>
+<!-- VOUCHER -->
+<div class="card">
+    <h3>Voucher Access</h3>
+
+    <form method="GET" action="$PORTAL_ACTION$">
+        <input class="input" type="text" name="voucher" placeholder="Enter Voucher Code" required>
+
+        <input type="hidden" name="clientMac" value="$CLIENT_MAC$">
+        <input type="hidden" name="apMac" value="$AP_MAC$">
+        <input type="hidden" name="ssidName" value="$SSID$">
+        <input type="hidden" name="redirectUrl" value="$REDIRECT_URL$">
+
+        <button class="btn">Load Voucher</button>
+    </form>
 </div>
 
-<div class="package">
-    <div>
-        <div class="price">R20</div>
-        <small>7 Days</small>
+<!-- TIME -->
+<div class="card">
+    <h3>Time Remaining</h3>
+    <div class="time">
+        <div class="time-box">00<br>Days</div>
+        <div class="time-box">00<br>Hours</div>
+        <div class="time-box">00<br>Min</div>
     </div>
-    <button onclick="buy('R20')">Buy</button>
 </div>
 
-<!-- 📢 ADVERT -->
-<div class="advert">
+<!-- PRICES -->
+<div class="card">
+    <h3>Prices</h3>
+
+    <div class="price-item">
+        <div>1 Hour</div>
+        <div class="price-tag">R2</div>
+    </div>
+
+    <div class="price-item">
+        <div>24 Hours</div>
+        <div class="price-tag">R5</div>
+    </div>
+
+    <div class="price-item">
+        <div>7 Days</div>
+        <div class="price-tag">R30</div>
+    </div>
+
+    <div class="price-item">
+        <div>30 Days</div>
+        <div class="price-tag">R120</div>
+    </div>
+
+    <button class="btn" onclick="buy()">Buy Voucher</button>
+</div>
+
+<!-- ADVERT -->
+<div class="card ad">
     <h3>Upgrade to Fibre 🚀</h3>
-    <p>Enjoy lightning-fast, uncapped fibre internet at home with Herotel.</p>
-    <a href="https://herotel.com/" target="_blank">View Fibre Deals</a>
+    <p>Get fast, uncapped fibre internet for your home.</p>
+    <a href="https://herotel.com/" target="_blank">View Herotel Deals</a>
 </div>
 
-<div class="footer">
-Need help? WhatsApp support available
+<!-- HELP -->
+<div class="card help">
+    <strong>Need help?</strong><br>
+    WhatsApp support available
 </div>
 
 </div>
 
 <script>
-function buy(package){
-
-  let amount = 0;
-
-  if(package === "R5") amount = 500;
-  if(package === "R10") amount = 1000;
-  if(package === "R20") amount = 2000;
-
-  fetch("http://192.168.1.10:7144/api/payment/create-checkout", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ amount: amount })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if(data.redirectUrl){
-      window.location.href = data.redirectUrl;
-    } else {
-      alert("Payment failed");
-    }
-  })
-  .catch(err => {
-    alert("Error starting payment");
-  });
+function buy(){
+    fetch("http://192.168.1.10:7144/api/payment/create-checkout", {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body: JSON.stringify({ amount: 500 })
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        if(data.redirectUrl){
+            window.location.href = data.redirectUrl;
+        }
+    });
 }
 </script>
 
