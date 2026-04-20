@@ -7,66 +7,82 @@
 
 <style>
 body{
-    font-family: 'Segoe UI', Arial;
+    font-family: 'Segoe UI', Arial, sans-serif;
     background:#f4f6f9;
     margin:0;
+    color:#333;
 }
 
 /* HEADER */
 .header{
-    background:white;
-    padding:15px;
+    background:linear-gradient(90deg,#f26522,#ff8a4c);
+    padding:20px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    border-bottom:1px solid #eee;
+    color:white;
 }
-
 .logo{
-    height:30px;
+    height:40px;
 }
-
 .hotspot-id{
     font-weight:bold;
-    color:#333;
 }
 
-/* MAIN */
+/* HERO */
+.hero{
+    background:#fff;
+    text-align:center;
+    padding:25px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+.hero h1{
+    color:#f26522;
+    margin:0;
+}
+.hero p{
+    margin:10px 0 0;
+    font-size:16px;
+}
+
+/* CONTAINER */
 .container{
-    max-width:420px;
+    max-width:480px;
     margin:auto;
     padding:15px;
 }
 
-/* STATUS CARD */
+/* CARD */
+.card{
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+.card h3{
+    margin-top:0;
+    color:#f26522;
+}
+
+/* STATUS */
 .status-card{
     background:#111;
     color:white;
     border-radius:12px;
     padding:15px;
-    margin-bottom:15px;
+    margin-bottom:20px;
 }
-
 .status-row{
     display:flex;
     justify-content:space-between;
     margin-bottom:10px;
 }
-
 .badge{
     background:#ff4d4d;
     padding:4px 10px;
     border-radius:20px;
     font-size:12px;
-}
-
-/* SECTION */
-.card{
-    background:white;
-    border-radius:12px;
-    padding:15px;
-    margin-bottom:15px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
 
 /* INPUT */
@@ -80,23 +96,24 @@ body{
 
 /* BUTTON */
 .btn{
-    width:100%;
-    padding:14px;
-    margin-top:10px;
+    padding:12px 18px;
     border:none;
     border-radius:10px;
     background:#f26522;
     color:white;
     font-weight:bold;
     cursor:pointer;
+    transition:0.3s;
+}
+.btn:hover{
+    background:#d9541d;
 }
 
-/* TIME BLOCKS */
+/* TIME */
 .time{
     display:flex;
     justify-content:space-between;
 }
-
 .time-box{
     background:#f3e1d7;
     padding:15px;
@@ -110,10 +127,9 @@ body{
 .price-item{
     display:flex;
     justify-content:space-between;
-    margin-bottom:15px;
     align-items:center;
+    margin-bottom:15px;
 }
-
 .price-tag{
     background:#e0f0e9;
     padding:8px 12px;
@@ -121,20 +137,38 @@ body{
     font-weight:bold;
 }
 
+/* FREE MINUTES */
+.free{
+    background:#fff8f3;
+    border:2px dashed #f26522;
+    text-align:center;
+}
+.progress-bar{
+    background:#eee;
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:10px;
+}
+.progress{
+    background:#f26522;
+    height:10px;
+    width:50%;
+}
+
 /* ADVERT */
 .ad{
     background:linear-gradient(135deg,#f26522,#ff8a4c);
     color:white;
     border-radius:12px;
-    padding:15px;
+    padding:20px;
+    text-align:center;
 }
-
 .ad a{
     display:inline-block;
     margin-top:10px;
     background:white;
     color:#f26522;
-    padding:10px;
+    padding:10px 15px;
     border-radius:8px;
     text-decoration:none;
     font-weight:bold;
@@ -143,6 +177,7 @@ body{
 /* HELP */
 .help{
     font-size:14px;
+    text-align:center;
 }
 </style>
 </head>
@@ -152,10 +187,25 @@ body{
 <!-- HEADER -->
 <div class="header">
     <img src="images/herotel-logo.png" class="logo">
-    <div class="hotspot-id">Hotspot</div>
+    <div class="hotspot-id">Herotel Hotspot</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>Welcome to Herotel Wi-Fi</h1>
+    <p>Fast • Flexible • Affordable</p>
 </div>
 
 <div class="container">
+
+<!-- FREE MINUTES -->
+<div class="card free">
+    <h3>Daily Free Wi‑Fi 🎁</h3>
+    <p>You get <strong>15 minutes free</strong> every day!</p>
+    <div class="progress-bar">
+        <div class="progress"></div>
+    </div>
+</div>
 
 <!-- STATUS -->
 <div class="status-card">
@@ -169,15 +219,12 @@ body{
 <!-- VOUCHER -->
 <div class="card">
     <h3>Voucher Access</h3>
-
     <form method="GET" action="$PORTAL_ACTION$">
         <input class="input" type="text" name="voucher" placeholder="Enter Voucher Code" required>
-
         <input type="hidden" name="clientMac" value="$CLIENT_MAC$">
         <input type="hidden" name="apMac" value="$AP_MAC$">
         <input type="hidden" name="ssidName" value="$SSID$">
         <input type="hidden" name="redirectUrl" value="$REDIRECT_URL$">
-
         <button class="btn">Load Voucher</button>
     </form>
 </div>
@@ -194,35 +241,33 @@ body{
 
 <!-- PRICES -->
 <div class="card">
-    <h3>Prices</h3>
-
+    <h3>Voucher Plans</h3>
     <div class="price-item">
         <div>1 Hour</div>
         <div class="price-tag">R2</div>
+        <button class="btn">Buy Now</button>
     </div>
-
     <div class="price-item">
         <div>24 Hours</div>
         <div class="price-tag">R5</div>
+        <button class="btn">Buy Now</button>
     </div>
-
     <div class="price-item">
         <div>7 Days</div>
         <div class="price-tag">R30</div>
+        <button class="btn">Buy Now</button>
     </div>
-
     <div class="price-item">
         <div>30 Days</div>
         <div class="price-tag">R120</div>
+        <button class="btn">Buy Now</button>
     </div>
-
-    <button class="btn" onclick="buy()">Buy Voucher</button>
 </div>
 
 <!-- ADVERT -->
 <div class="card ad">
     <h3>Upgrade to Fibre 🚀</h3>
-    <p>Get fast, uncapped fibre internet for your home.</p>
+    <p>Get uncapped fibre internet for your home starting at R399/month.</p>
     <a href="https://herotel.com/" target="_blank">View Herotel Deals</a>
 </div>
 
