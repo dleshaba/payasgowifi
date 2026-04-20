@@ -22,12 +22,8 @@ body{
     justify-content:space-between;
     color:white;
 }
-.logo{
-    height:40px;
-}
-.hotspot-id{
-    font-weight:bold;
-}
+.logo{height:40px;}
+.hotspot-id{font-weight:bold;}
 
 /* HERO */
 .hero{
@@ -36,21 +32,11 @@ body{
     padding:25px;
     box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
-.hero h1{
-    color:#f26522;
-    margin:0;
-}
-.hero p{
-    margin:10px 0 0;
-    font-size:16px;
-}
+.hero h1{color:#f26522;margin:0;}
+.hero p{margin:10px 0 0;font-size:16px;}
 
 /* CONTAINER */
-.container{
-    max-width:480px;
-    margin:auto;
-    padding:15px;
-}
+.container{max-width:480px;margin:auto;padding:15px;}
 
 /* CARD */
 .card{
@@ -60,126 +46,59 @@ body{
     margin-bottom:20px;
     box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
-.card h3{
-    margin-top:0;
-    color:#f26522;
-}
+.card h3{margin-top:0;color:#f26522;}
 
 /* STATUS */
 .status-card{
-    background:#111;
-    color:white;
-    border-radius:12px;
-    padding:15px;
-    margin-bottom:20px;
+    background:#111;color:white;border-radius:12px;
+    padding:15px;margin-bottom:20px;
 }
-.status-row{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:10px;
-}
-.badge{
-    padding:4px 10px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:bold;
-}
+.status-row{display:flex;justify-content:space-between;margin-bottom:10px;}
+.badge{padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold;}
 
 /* INPUT */
-.input{
-    width:100%;
-    padding:14px;
-    border-radius:10px;
-    border:1px solid #ddd;
-    margin-top:10px;
-}
+.input{width:100%;padding:14px;border-radius:10px;border:1px solid #ddd;margin-top:10px;}
 
 /* BUTTON */
 .btn{
-    padding:12px 18px;
-    border:none;
-    border-radius:10px;
-    background:#f26522;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
+    padding:12px 18px;border:none;border-radius:10px;
+    background:#f26522;color:white;font-weight:bold;
+    cursor:pointer;transition:0.3s;
 }
-.btn:hover{
-    background:#d9541d;
-}
-
-/* TIME */
-.time{
-    display:flex;
-    justify-content:space-between;
-}
-.time-box{
-    background:#f3e1d7;
-    padding:15px;
-    border-radius:10px;
-    text-align:center;
-    width:30%;
-    font-weight:bold;
-}
-
-/* PRICES */
-.price-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:15px;
-}
-.price-tag{
-    background:#e0f0e9;
-    padding:8px 12px;
-    border-radius:8px;
-    font-weight:bold;
-}
+.btn:hover{background:#d9541d;}
 
 /* FREE MINUTES */
-.free{
-    background:#fff8f3;
-    border:2px dashed #f26522;
-    text-align:center;
-}
-.progress-bar{
-    background:#eee;
-    border-radius:10px;
-    overflow:hidden;
-    margin-top:10px;
-}
-.progress{
-    background:#f26522;
-    height:10px;
-    width:100%;
-    transition:width 1s linear;
-}
+.free{background:#fff8f3;border:2px dashed #f26522;text-align:center;}
+.progress-bar{background:#eee;border-radius:10px;overflow:hidden;margin-top:10px;}
+.progress{background:#f26522;height:10px;width:100%;transition:width 1s linear;}
 
-/* ADVERT */
-.ad{
-    background:linear-gradient(135deg,#f26522,#ff8a4c);
-    color:white;
-    border-radius:12px;
-    padding:20px;
-    text-align:center;
+/* VOUCHER PLANS */
+.plans{display:grid;gap:15px;}
+.plan{
+    background:#fafafa;border-radius:10px;padding:15px;text-align:center;
+    box-shadow:0 2px 6px rgba(0,0,0,0.05);
 }
-.ad a{
-    display:inline-block;
-    margin-top:10px;
-    background:white;
-    color:#f26522;
-    padding:10px 15px;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:bold;
+.plan h4{margin:0;color:#333;}
+.plan p{font-size:13px;color:#666;}
+.price-tag{background:#e0f0e9;padding:8px 12px;border-radius:8px;font-weight:bold;margin:10px 0;}
+.plan .badge{background:#f26522;color:white;font-size:11px;margin-bottom:8px;display:inline-block;padding:3px 8px;border-radius:6px;}
+.plan.popular{border:2px solid #f26522;}
+
+/* CAROUSEL */
+.carousel{position:relative;overflow:hidden;border-radius:12px;}
+.carousel img{width:100%;display:none;border-radius:12px;}
+.carousel img.active{display:block;}
+.carousel-controls{
+    position:absolute;top:50%;left:0;right:0;display:flex;justify-content:space-between;
+    transform:translateY(-50%);padding:0 10px;
+}
+.carousel-controls button{
+    background:rgba(0,0,0,0.5);color:white;border:none;padding:5px 10px;
+    border-radius:5px;cursor:pointer;
 }
 
 /* HELP */
-.help{
-    font-size:14px;
-    text-align:center;
-}
+.help{font-size:14px;text-align:center;}
 </style>
 </head>
 
@@ -203,9 +122,7 @@ body{
 <div class="card free">
     <h3>Daily Free Wi‑Fi 🎁</h3>
     <p>You get <strong>15 minutes free</strong> every day!</p>
-    <div class="progress-bar">
-        <div id="freeProgress" class="progress"></div>
-    </div>
+    <div class="progress-bar"><div id="freeProgress" class="progress"></div></div>
     <p id="freeTime">15:00 remaining</p>
 </div>
 
@@ -218,59 +135,58 @@ body{
     <div id="deviceInfo">Device recognized</div>
 </div>
 
-<!-- VOUCHER -->
-<div class="card">
-    <h3>Voucher Access</h3>
+<!-- VOUCHER ACCESS -->
+<div class="card voucher">
+    <h3>🔑 Secure Voucher Access</h3>
+    <p>Enter your voucher code to unlock internet access.</p>
     <form method="GET" action="$PORTAL_ACTION$">
         <input class="input" type="text" name="voucher" placeholder="Enter Voucher Code" required>
         <input type="hidden" name="clientMac" value="$CLIENT_MAC$">
         <input type="hidden" name="apMac" value="$AP_MAC$">
         <input type="hidden" name="ssidName" value="$SSID$">
         <input type="hidden" name="redirectUrl" value="$REDIRECT_URL$">
-        <button class="btn">Load Voucher</button>
+        <button class="btn">Unlock Access</button>
     </form>
 </div>
 
-<!-- TIME -->
+<!-- VOUCHER PLANS -->
 <div class="card">
-    <h3>Time Remaining</h3>
-    <div class="time">
-        <div class="time-box">00<br>Days</div>
-        <div class="time-box">00<br>Hours</div>
-        <div class="time-box">00<br>Min</div>
+    <h3>💡 Choose Your Plan</h3>
+    <div class="plans">
+        <div class="plan">
+            <h4>1 Hour</h4>
+            <p>Quick browsing</p>
+            <div class="price-tag">R2</div>
+            <button class="btn">Buy Now</button>
+        </div>
+        <div class="plan popular">
+            <span class="badge">Best Value</span>
+            <h4>7 Days</h4>
+            <p>Perfect for students</p>
+            <div class="price-tag">R30</div>
+            <button class="btn">Buy Now</button>
+        </div>
+        <div class="plan">
+            <h4>30 Days</h4>
+            <p>Unlimited access</p>
+            <div class="price-tag">R120</div>
+            <button class="btn">Buy Now</button>
+        </div>
     </div>
 </div>
 
-<!-- PRICES -->
+<!-- CAROUSEL ADVERT -->
 <div class="card">
-    <h3>Voucher Plans</h3>
-    <div class="price-item">
-        <div>1 Hour</div>
-        <div class="price-tag">R2</div>
-        <button class="btn">Buy Now</button>
+    <h3>🚀 Herotel Fibre Deals</h3>
+    <div class="carousel">
+        <img src="images/herotel-ad1.jpg" class="active" alt="Herotel Fibre Promo">
+        <img src="images/herotel-ad2.jpg" alt="Herotel WiFi Hotspot">
+        <img src="images/herotel-ad3.jpg" alt="Herotel Family Fibre">
+        <div class="carousel-controls">
+            <button onclick="prevSlide()">‹</button>
+            <button onclick="nextSlide()">›</button>
+        </div>
     </div>
-    <div class="price-item">
-        <div>24 Hours</div>
-        <div class="price-tag">R5</div>
-        <button class="btn">Buy Now</button>
-    </div>
-    <div class="price-item">
-        <div>7 Days</div>
-        <div class="price-tag">R30</div>
-        <button class="btn">Buy Now</button>
-    </div>
-    <div class="price-item">
-        <div>30 Days</div>
-        <div class="price-tag">R120</div>
-        <button class="btn">Buy Now</button>
-    </div>
-</div>
-
-<!-- ADVERT -->
-<div class="card ad">
-    <h3>Upgrade to Fibre 🚀</h3>
-    <p>Get uncapped fibre internet for your home starting at R399/month.</p>
-    <a href="https://herotel.com/" target="_blank">View Herotel Deals</a>
 </div>
 
 <!-- HELP -->
@@ -289,7 +205,7 @@ document.getElementById("statusBadge").style.background = isOnline ? "#4CAF50" :
 document.getElementById("deviceInfo").textContent = "Device: " + "$CLIENT_MAC$";
 
 // Free Minutes Countdown
-let freeSeconds = 15 * 60; // 15 minutes
+let freeSeconds = 15 * 60;
 function updateFreeTime(){
   let minutes = Math.floor(freeSeconds / 60);
   let seconds = freeSeconds % 60;
@@ -300,6 +216,27 @@ function updateFreeTime(){
 }
 setInterval(updateFreeTime, 1000);
 updateFreeTime();
+
+// Carousel Logic
+let slides = document.querySelectorAll(".carousel img");
+let currentSlide = 0;
+function showSlide(index){
+  slides.forEach((slide,i)=>slide.classList.toggle("active", i===index));
+}
+function nextSlide(){
+  currentSlide = (currentSlide+1)%slides.length;
+  showSlide(currentSlide);
+}
+function prevSlide(){
+  currentSlide = (currentSlide-1+slides.length)%slides.length;
+  showSlide(currentSlide);
+}
+
+// Auto-rotate every 5 seconds
+setInterval(nextSlide, 5000);
+
+// Initialize first slide
+showSlide(currentSlide);
 </script>
 
 </body>
