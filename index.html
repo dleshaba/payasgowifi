@@ -97,6 +97,25 @@ body{
     border-radius:5px;cursor:pointer;
 }
 
+/* ADVERT */
+.ad{
+    background:linear-gradient(135deg,#f26522,#ff8a4c);
+    color:white;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+}
+.ad a{
+    display:inline-block;
+    margin-top:10px;
+    background:white;
+    color:#f26522;
+    padding:10px 15px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
 /* HELP */
 .help{font-size:14px;text-align:center;}
 </style>
@@ -179,14 +198,22 @@ body{
 <div class="card">
     <h3>🚀 Herotel Fibre Deals</h3>
     <div class="carousel">
-        <img src="images/herotel-ad1.jpg" class="active" alt="Herotel Fibre Promo">
-        <img src="images/herotel-ad2.jpg" alt="Herotel WiFi Hotspot">
-        <img src="images/herotel-ad3.jpg" alt="Herotel Family Fibre">
+        <img src="images/wifi-promo.jpg" class="active" alt="Herotel Fibre Promo">
+        <img src="images/family-fibre.jpg" alt="Herotel WiFi Hotspot">
+        <img src="images/asda.jpg" alt="Herotel Family Fibre">
         <div class="carousel-controls">
             <button onclick="prevSlide()">‹</button>
             <button onclick="nextSlide()">›</button>
         </div>
     </div>
+</div>
+
+<!-- HEROTEL ADVERT -->
+<div class="card ad">
+  <h3>🚀 Upgrade to Fibre</h3>
+  <img src="herotel-fibre.jpg" alt="Herotel Fibre Promo" style="width:100%;border-radius:10px;">
+  <p>Get uncapped fibre internet starting at R399/month.</p>
+  <a href="https://herotel.com/" target="_blank">View Deals</a>
 </div>
 
 <!-- HELP -->
