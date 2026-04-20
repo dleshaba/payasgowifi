@@ -7,95 +7,130 @@
 
 <style>
 body{
-font-family: Arial, sans-serif;
-background:#f4f4f4;
-margin:0;
-padding:30px;
-text-align:center;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg,#f4f4f4,#e9eef3);
+    margin:0;
+    padding:20px;
 }
 
+/* MAIN CARD */
 .container{
-max-width:420px;
-margin:auto;
-background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    max-width:420px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
 
+/* HEADER */
 .logo{
-width:140px;
-margin-bottom:20px;
+    width:130px;
+    margin-bottom:10px;
 }
 
 h1{
-color:#f26522;
-margin-bottom:10px;
+    color:#f26522;
+    margin:5px 0;
 }
 
 .subtitle{
-color:#555;
-margin-bottom:25px;
+    color:#666;
+    font-size:14px;
+    margin-bottom:20px;
 }
 
+/* INPUT */
 .input{
-width:100%;
-padding:12px;
-border-radius:6px;
-border:1px solid #ccc;
-margin-top:10px;
+    width:100%;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    margin-top:10px;
+    font-size:15px;
 }
 
-.package{
-background:#fafafa;
-border:1px solid #eee;
-border-radius:6px;
-padding:15px;
-margin-bottom:15px;
-}
-
-.price{
-font-size:18px;
-font-weight:bold;
-color:#f26522;
-}
-
+/* BUTTON */
 button{
-width:100%;
-padding:14px;
-margin-top:10px;
-border:none;
-border-radius:6px;
-background:#f26522;
-color:white;
-font-size:16px;
-cursor:pointer;
+    width:100%;
+    padding:14px;
+    margin-top:12px;
+    border:none;
+    border-radius:10px;
+    background:#f26522;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.2s;
 }
 
 button:hover{
-opacity:0.9;
+    transform:translateY(-1px);
+    box-shadow:0 6px 15px rgba(242,101,34,0.3);
 }
 
-.result{
-margin-top:20px;
-font-size:16px;
+/* SECTION TITLE */
+.section-title{
+    text-align:left;
+    font-weight:bold;
+    margin:20px 0 10px;
+    color:#333;
 }
 
-.support{
-margin-top:20px;
-font-size:14px;
+/* PACKAGES */
+.package{
+    background:#fafafa;
+    border:1px solid #eee;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
+.price{
+    font-weight:bold;
+    color:#f26522;
+}
+
+/* ADVERT */
+.advert{
+    margin-top:20px;
+    background:linear-gradient(135deg,#f26522,#ff8a4c);
+    color:white;
+    padding:18px;
+    border-radius:14px;
+    text-align:left;
+}
+
+.advert h3{
+    margin:0;
+}
+
+.advert p{
+    font-size:13px;
+    margin:8px 0;
+}
+
+.advert a{
+    display:inline-block;
+    margin-top:10px;
+    padding:10px 14px;
+    background:white;
+    color:#f26522;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* FOOTER */
 .footer{
-margin-top:25px;
-font-size:13px;
-color:#666;
-}
-
-.footer a{
-color:#f26522;
-text-decoration:none;
-margin:0 6px;
+    margin-top:20px;
+    font-size:12px;
+    text-align:center;
+    color:#888;
 }
 </style>
 
@@ -108,53 +143,58 @@ margin:0 6px;
 <img src="images/herotel-logo.png" class="logo">
 
 <h1>Herotel Wi-Fi</h1>
+<p class="subtitle">Fast. Affordable. Reliable internet access.</p>
 
-<p class="subtitle">
-Fast and affordable hotspot internet.<br>
-Enter voucher or buy below.
-</p>
+<!-- 🔑 VOUCHER -->
+<div class="section-title">Have a Voucher?</div>
 
-<!-- 🔑 VOUCHER SECTION -->
 <form method="GET" action="$PORTAL_ACTION$">
-    <input class="input" type="text" name="voucher" placeholder="Enter Voucher Code" required>
+    <input class="input" type="text" name="voucher" placeholder="Enter voucher code" required>
 
-    <!-- Grandstream required fields -->
     <input type="hidden" name="clientMac" value="$CLIENT_MAC$">
     <input type="hidden" name="apMac" value="$AP_MAC$">
     <input type="hidden" name="ssidName" value="$SSID$">
     <input type="hidden" name="redirectUrl" value="$REDIRECT_URL$">
 
-    <button type="submit">Load Voucher</button>
+    <button type="submit">Connect to Internet</button>
 </form>
 
-<hr style="margin:25px 0;">
+<!-- 💰 BUY -->
+<div class="section-title">Buy Data</div>
 
-<!-- 💰 BUY SECTION -->
 <div class="package">
-<div class="price">R5 – 24 Hour Access</div>
-<button onclick="buy('R5')">Buy Now</button>
+    <div>
+        <div class="price">R5</div>
+        <small>24 Hours</small>
+    </div>
+    <button onclick="buy('R5')">Buy</button>
 </div>
 
 <div class="package">
-<div class="price">R10 – Unlimited Today</div>
-<button onclick="buy('R10')">Buy Now</button>
+    <div>
+        <div class="price">R10</div>
+        <small>Unlimited Today</small>
+    </div>
+    <button onclick="buy('R10')">Buy</button>
 </div>
 
 <div class="package">
-<div class="price">R20 – 7 Day Access</div>
-<button onclick="buy('R20')">Buy Now</button>
+    <div>
+        <div class="price">R20</div>
+        <small>7 Days</small>
+    </div>
+    <button onclick="buy('R20')">Buy</button>
 </div>
 
-<div id="result" class="result"></div>
-
-<div class="support">
-Need help?  
-<a href="https://wa.me/27820000000">Chat on WhatsApp</a>
+<!-- 📢 ADVERT -->
+<div class="advert">
+    <h3>Upgrade to Fibre 🚀</h3>
+    <p>Enjoy lightning-fast, uncapped fibre internet at home with Herotel.</p>
+    <a href="https://herotel.com/" target="_blank">View Fibre Deals</a>
 </div>
 
 <div class="footer">
-<a href="refund.html">Refund Policy</a> |
-<a href="terms.html">Terms of Service</a>
+Need help? WhatsApp support available
 </div>
 
 </div>
@@ -168,7 +208,7 @@ function buy(package){
   if(package === "R10") amount = 1000;
   if(package === "R20") amount = 2000;
 
-  fetch("http://192.168.1.10:7144/api/payment/create-checkout", { // ⚠️ CHANGE THIS
+  fetch("http://192.168.1.10:7144/api/payment/create-checkout", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
