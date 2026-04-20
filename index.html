@@ -79,10 +79,10 @@ body{
     margin-bottom:10px;
 }
 .badge{
-    background:#ff4d4d;
     padding:4px 10px;
     border-radius:20px;
     font-size:12px;
+    font-weight:bold;
 }
 
 /* INPUT */
@@ -152,7 +152,8 @@ body{
 .progress{
     background:#f26522;
     height:10px;
-    width:50%;
+    width:100%;
+    transition:width 1s linear;
 }
 
 /* ADVERT */
@@ -198,22 +199,23 @@ body{
 
 <div class="container">
 
-<!-- FREE MINUTES -->
+<!-- FREE MINUTES TRACKER -->
 <div class="card free">
     <h3>Daily Free Wi‑Fi 🎁</h3>
     <p>You get <strong>15 minutes free</strong> every day!</p>
     <div class="progress-bar">
-        <div class="progress"></div>
+        <div id="freeProgress" class="progress"></div>
     </div>
+    <p id="freeTime">15:00 remaining</p>
 </div>
 
 <!-- STATUS -->
 <div class="status-card">
     <div class="status-row">
         <div>Connection Status</div>
-        <div class="badge">Offline</div>
+        <div id="statusBadge" class="badge">Checking...</div>
     </div>
-    <div>Device: $CLIENT_MAC$</div>
+    <div id="deviceInfo">Device recognized</div>
 </div>
 
 <!-- VOUCHER -->
@@ -280,19 +282,24 @@ body{
 </div>
 
 <script>
-function buy(){
-    fetch("http://192.168.1.10:7144/api/payment/create-checkout", {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body: JSON.stringify({ amount: 500 })
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        if(data.redirectUrl){
-            window.location.href = data.redirectUrl;
-        }
-    });
+// Connection Status Simulation
+let isOnline = true; // Replace with real check
+document.getElementById("statusBadge").textContent = isOnline ? "Online" : "Offline";
+document.getElementById("statusBadge").style.background = isOnline ? "#4CAF50" : "#ff4d4d";
+document.getElementById("deviceInfo").textContent = "Device: " + "$CLIENT_MAC$";
+
+// Free Minutes Countdown
+let freeSeconds = 15 * 60; // 15 minutes
+function updateFreeTime(){
+  let minutes = Math.floor(freeSeconds / 60);
+  let seconds = freeSeconds % 60;
+  document.getElementById("freeTime").textContent = minutes + ":" + (seconds<10?"0":"") + seconds + " remaining";
+  document.getElementById("freeProgress").style.width = ((freeSeconds/(15*60))*100) + "%";
+  if(freeSeconds > 0) freeSeconds--;
+  else document.getElementById("freeTime").textContent = "Free time expired";
 }
+setInterval(updateFreeTime, 1000);
+updateFreeTime();
 </script>
 
 </body>
