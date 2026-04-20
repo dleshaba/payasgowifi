@@ -38,14 +38,6 @@ color:#555;
 margin-bottom:25px;
 }
 
-.input{
-width:100%;
-padding:12px;
-border-radius:6px;
-border:1px solid #ccc;
-margin-top:10px;
-}
-
 .package{
 background:#fafafa;
 border:1px solid #eee;
@@ -74,6 +66,11 @@ cursor:pointer;
 
 button:hover{
 opacity:0.9;
+}
+
+button:disabled{
+background:#ccc;
+cursor:not-allowed;
 }
 
 .result{
@@ -105,31 +102,15 @@ margin:0 6px;
 
 <div class="container">
 
-<img src="images/herotel-logo.png" class="logo">
+<img src="images/herotel-logo.png" class="logo" alt="WiFi Logo">
 
 <h1>Herotel Wi-Fi</h1>
 
 <p class="subtitle">
 Fast and affordable hotspot internet.<br>
-Enter voucher or buy below.
+Choose a package below to get connected.
 </p>
 
-<!-- 🔑 VOUCHER SECTION -->
-<form method="GET" action="$PORTAL_ACTION$">
-    <input class="input" type="text" name="voucher" placeholder="Enter Voucher Code" required>
-
-    <!-- Grandstream required fields -->
-    <input type="hidden" name="clientMac" value="$CLIENT_MAC$">
-    <input type="hidden" name="apMac" value="$AP_MAC$">
-    <input type="hidden" name="ssidName" value="$SSID$">
-    <input type="hidden" name="redirectUrl" value="$REDIRECT_URL$">
-
-    <button type="submit">Load Voucher</button>
-</form>
-
-<hr style="margin:25px 0;">
-
-<!-- 💰 BUY SECTION -->
 <div class="package">
 <div class="price">R5 – 24 Hour Access</div>
 <button onclick="buy('R5')">Buy Now</button>
@@ -168,26 +149,31 @@ function buy(package){
   if(package === "R10") amount = 1000;
   if(package === "R20") amount = 2000;
 
-  fetch("http://192.168.1.10:7144/api/payment/create-checkout", { // ⚠️ CHANGE THIS
+  fetch("https://localhost:7144/api/payment/create-checkout", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({ amount: amount })
   })
-  .then(res => res.json())
+  .then(res => {
+    console.log("STATUS:", res.status);
+    return res.json();
+  })
   .then(data => {
+    console.log("RESPONSE:", data);
+
     if(data.redirectUrl){
       window.location.href = data.redirectUrl;
     } else {
-      alert("Payment failed");
+      alert("No redirect URL received");
     }
   })
   .catch(err => {
-    alert("Error starting payment");
+    console.error("FETCH ERROR:", err);
+    alert("Payment failed to start");
   });
 }
 </script>
-
 </body>
 </html>
