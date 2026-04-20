@@ -27,13 +27,54 @@ body{
 
 /* HERO */
 .hero{
-    background:#fff;
+    background:linear-gradient(135deg,#f26522,#ff8a4c);
+    color:white;
     text-align:center;
-    padding:25px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+    padding:60px 20px;
+    position:relative;
+    overflow:hidden;
 }
-.hero h1{color:#f26522;margin:0;}
-.hero p{margin:10px 0 0;font-size:16px;}
+.hero::after{
+    content:"";
+    background:url('images/herotel-banner.jpg') center/cover no-repeat;
+    opacity:0.15;
+    position:absolute;
+    top:0;left:0;right:0;bottom:0;
+}
+.hero-content{
+    position:relative;
+    z-index:1;
+}
+.hero h1{
+    font-size:2.2em;
+    margin:0;
+    animation:fadeInDown 1s ease;
+}
+.hero p{
+    font-size:1.2em;
+    margin:10px 0 20px;
+    animation:fadeInUp 1.5s ease;
+}
+.hero-btn{
+    background:white;
+    color:#f26522;
+    font-weight:bold;
+    border-radius:8px;
+    padding:12px 20px;
+    text-decoration:none;
+    transition:0.3s;
+}
+.hero-btn:hover{
+    background:#ffe0d1;
+}
+@keyframes fadeInDown{
+    from{opacity:0;transform:translateY(-20px);}
+    to{opacity:1;transform:translateY(0);}
+}
+@keyframes fadeInUp{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+}
 
 /* CONTAINER */
 .container{max-width:480px;margin:auto;padding:15px;}
@@ -131,8 +172,11 @@ body{
 
 <!-- HERO -->
 <div class="hero">
-    <h1>Welcome to Herotel Wi-Fi</h1>
+  <div class="hero-content">
+    <h1>Herotel Wi‑Fi</h1>
     <p>Fast • Flexible • Affordable</p>
+    <a href="https://herotel.com/" target="_blank" class="btn hero-btn">View Fibre Deals</a>
+  </div>
 </div>
 
 <div class="container">
