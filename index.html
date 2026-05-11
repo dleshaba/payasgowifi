@@ -202,14 +202,38 @@ body{
 <div class="card voucher">
     <h3>🔑 Secure Voucher Access</h3>
     <p>Enter your voucher code to unlock internet access.</p>
-    <form method="GET" action="$PORTAL_ACTION$">
-        <input class="input" type="text" name="voucher" placeholder="Enter Voucher Code" required>
-        <input type="hidden" name="clientMac" value="$CLIENT_MAC$">
+    <!-- <form method="POST" action="/portal/auth/voucher"> -->
+    <!-- Voucher Code -->
+        <!-- <input class="input" type="text" name="voucher" placeholder="Enter Voucher Code" required> -->
+    <!-- Hidden fields injected by Grandstream -->
+        <!-- <input type="hidden" name="clientMac" value="$CLIENT_MAC$">
         <input type="hidden" name="apMac" value="$AP_MAC$">
         <input type="hidden" name="ssidName" value="$SSID$">
-        <input type="hidden" name="redirectUrl" value="$REDIRECT_URL$">
-        <button class="btn">Unlock Access</button>
-    </form>
+        <input type="hidden" name="redirectUrl" value="$REDIRECT_URL$"> -->
+    <!-- Submit -->
+        <!-- <button class="btn">Unlock Access</button> -->
+    <!-- </form> -->
+     <form method="GET" action="$PORTAL_ACTION$">
+
+    <input
+        class="input"
+        type="text"
+        name="voucher"
+        placeholder="Enter Voucher Code"
+        required
+    >
+
+    <input type="hidden" name="clientMac" value="$CLIENT_MAC$">
+    <input type="hidden" name="apMac" value="$AP_MAC$">
+    <input type="hidden" name="ssidName" value="$SSID$">
+    <input type="hidden" name="redirectUrl" value="$REDIRECT_URL$">
+
+    <button class="btn" type="submit">
+        Unlock Access
+    </button>
+
+</form>
+
 </div>
 
 <!-- VOUCHER PLANS -->
