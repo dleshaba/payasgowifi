@@ -214,7 +214,7 @@ body{
     <!-- Submit -->
         <!-- <button class="btn">Unlock Access</button> -->
     <!-- </form> -->
-<form id="voucherForm" method="GET">
+<form id="voucherForm" method="POST">
 
     <input
         class="input"
@@ -341,7 +341,7 @@ const params = new URLSearchParams(window.location.search);
 const form = document.getElementById("voucherForm");
 
 /*
-Grandstream login endpoint
+Get Grandstream login endpoint
 */
 const loginUrl = params.get("login_url");
 
@@ -350,20 +350,27 @@ if(loginUrl){
 }
 
 /*
-Forward ALL parameters back to Grandstream
+Required Grandstream parameters
 */
-params.forEach((value, key) => {
+[
+    "ap_mac",
+    "client_mac",
+    "ssid",
+    "orig_url"
+].forEach(key => {
 
-    // Skip duplicate voucher field
-    if(key === "voucher") return;
+    const value = params.get(key);
 
-    const input = document.createElement("input");
+    if(value){
 
-    input.type = "hidden";
-    input.name = key;
-    input.value = value;
+        const input = document.createElement("input");
 
-    form.appendChild(input);
+        input.type = "hidden";
+        input.name = key;
+        input.value = value;
+
+        form.appendChild(input);
+    }
 });
 </script>
 </body>
