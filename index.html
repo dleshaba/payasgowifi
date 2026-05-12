@@ -214,14 +214,30 @@ body{
     <!-- Submit -->
         <!-- <button class="btn">Unlock Access</button> -->
     <!-- </form> -->
-<form id="voucherForm" method="POST">
+<form
+    method="POST"
+    action="https://cwp.gwnportal.cloud:8443/GsUserAuth.cgi"
+>
 
     <input
         class="input"
         type="text"
-        name="accessCode"
+        name="GsUserAuthPassword"
         placeholder="Enter Voucher Code"
         required
+    >
+
+    <input
+        type="hidden"
+        name="GsUserAuthMethod"
+        value="128"
+    >
+
+    <input
+        type="hidden"
+        id="realReqUrl"
+        name="GsUserRealReqUrl"
+        value=""
     >
 
     <button class="btn" type="submit">
@@ -229,6 +245,7 @@ body{
     </button>
 
 </form>
+
 </div>
 
 <!-- VOUCHER PLANS -->
@@ -338,40 +355,17 @@ showSlide(currentSlide);
 <script>
 const params = new URLSearchParams(window.location.search);
 
-const form = document.getElementById("voucherForm");
+/*
+Get original redirect URL
+*/
+const origUrl = params.get("orig_url");
 
 /*
-Get Grandstream login endpoint
+Populate hidden field
 */
-const loginUrl = params.get("login_url");
-
-if(loginUrl){
-    form.action = loginUrl;
+if(origUrl){
+    document.getElementById("realReqUrl").value = origUrl;
 }
-
-/*
-Required Grandstream parameters
-*/
-[
-    "ap_mac",
-    "client_mac",
-    "ssid",
-    "orig_url"
-].forEach(key => {
-
-    const value = params.get(key);
-
-    if(value){
-
-        const input = document.createElement("input");
-
-        input.type = "hidden";
-        input.name = key;
-        input.value = value;
-
-        form.appendChild(input);
-    }
-});
 </script>
 </body>
 </html>
