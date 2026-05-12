@@ -214,20 +214,15 @@ body{
     <!-- Submit -->
         <!-- <button class="btn">Unlock Access</button> -->
     <!-- </form> -->
-     <form method="GET" action="$PORTAL_ACTION$">
+    <form id="voucherForm" method="GET" action="https://cwp.gwnportal.cloud">
 
     <input
         class="input"
         type="text"
-        name="accessCode"
+        name="voucher"
         placeholder="Enter Voucher Code"
         required
     >
-
-    <input type="hidden" name="clientMac" value="$CLIENT_MAC$">
-    <input type="hidden" name="apMac" value="$AP_MAC$">
-    <input type="hidden" name="ssidName" value="$SSID$">
-    <input type="hidden" name="redirectUrl" value="$REDIRECT_URL$">
 
     <button class="btn" type="submit">
         Unlock Access
@@ -341,6 +336,21 @@ setInterval(nextSlide, 5000);
 // Initialize first slide
 showSlide(currentSlide);
 </script>
+<script>
+const params = new URLSearchParams(window.location.search);
 
+const form = document.getElementById("voucherForm");
+
+params.forEach((value, key) => {
+
+    const input = document.createElement("input");
+
+    input.type = "hidden";
+    input.name = key;
+    input.value = value;
+
+    form.appendChild(input);
+});
+</script>
 </body>
 </html>
