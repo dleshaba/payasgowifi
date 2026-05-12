@@ -214,7 +214,7 @@ body{
     <!-- Submit -->
         <!-- <button class="btn">Unlock Access</button> -->
     <!-- </form> -->
-    <form id="voucherForm" method="GET" action="https://cwp.gwnportal.cloud">
+<form id="voucherForm" method="GET">
 
     <input
         class="input"
@@ -229,7 +229,6 @@ body{
     </button>
 
 </form>
-
 </div>
 
 <!-- VOUCHER PLANS -->
@@ -341,7 +340,22 @@ const params = new URLSearchParams(window.location.search);
 
 const form = document.getElementById("voucherForm");
 
+/*
+Grandstream login endpoint
+*/
+const loginUrl = params.get("login_url");
+
+if(loginUrl){
+    form.action = loginUrl;
+}
+
+/*
+Forward ALL parameters back to Grandstream
+*/
 params.forEach((value, key) => {
+
+    // Skip duplicate voucher field
+    if(key === "voucher") return;
 
     const input = document.createElement("input");
 
