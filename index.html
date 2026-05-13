@@ -258,45 +258,22 @@ body{
   >
 
   <!-- Authentication Method (128 = voucher) -->
-  <input
-    type="hidden"
-    name="GsUserAuthMethod"
-    value="128"
-  >
+  <input type="hidden" name="GsUserAuthMethod" value="128">
 
   <!-- Client MAC (auto-injected by AP) -->
-  <input
-    type="hidden"
-    name="GsUserAuthMAC"
-    value="$CLIENT_MAC$"
-  >
+  <input type="hidden" name="GsUserAuthMAC" value="$CLIENT_MAC$">
 
   <!-- AP MAC (auto-injected by AP) -->
-  <input
-    type="hidden"
-    name="GsUserAPMAC"
-    value="$AP_MAC$"
-  >
+  <input type="hidden" name="GsUserAPMAC" value="$AP_MAC$">
 
   <!-- SSID (auto-injected by AP) -->
-  <input
-    type="hidden"
-    name="GsUserSSID"
-    value="$SSID$"
-  >
+  <input type="hidden" name="GsUserSSID" value="$SSID$">
 
   <!-- Redirect URL (original destination) -->
-  <input
-    type="hidden"
-    id="realReqUrl"
-    name="GsUserRealReqUrl"
-    value=""
-  >
+  <input type="hidden" id="realReqUrl" name="GsUserRealReqUrl" value="">
 
   <!-- Submit -->
-  <button class="btn" type="submit">
-    Unlock Access
-  </button>
+  <button class="btn" type="submit">Unlock Access</button>
 </form>
 
 
