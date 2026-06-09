@@ -1,73 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>GDMS Voucher Login</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 40px; }
-    #message { margin-top: 20px; font-weight: bold; }
-    .success { color: green; }
-    .error { color: red; }
-  </style>
-  <script>
-    // Extract query parameters from AP redirect
-    function getQueryParam(name) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(name) || '';
-    }
-
-    async function submitVoucher(event) {
-      event.preventDefault(); // prevent normal form submission
-
-      const voucher = document.getElementById('voucher').value;
-      const client_mac = getQueryParam('client_mac');
-      const ap_mac = getQueryParam('ap_mac');
-      const ssid = getQueryParam('ssid');
-      const session_id = getQueryParam('session_id');
-
-      // Build request payload
-      const payload = {
-        voucher_code: voucher,
-        client_mac: client_mac,
-        ap_mac: ap_mac,
-        ssid: ssid,
-        session_id: session_id
-      };
-
-      try {
-        const response = await fetch("https://www.gdms.cloud/oapi/portal/voucher", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
-
-        const result = await response.json();
-
-        // Handle response
-        const msgBox = document.getElementById('message');
-        if (result.success) {
-          msgBox.textContent = "✅ Voucher accepted! You are now online.";
-          msgBox.className = "success";
-        } else {
-          msgBox.textContent = "❌ Voucher failed: " + (result.message || "Invalid code");
-          msgBox.className = "error";
-        }
-      } catch (err) {
-        const msgBox = document.getElementById('message');
-        msgBox.textContent = "⚠️ Error connecting to GDMS API.";
-        msgBox.className = "error";
-      }
-    }
-  </script>
+  <title>WiFi Login</title>
 </head>
 <body>
-  <h2>Enter Voucher Code</h2>
-  <form onsubmit="submitVoucher(event)">
-    <label for="voucher">Voucher Code:</label>
-    <input type="text" id="voucher" required>
-    <button type="submit">Login</button>
-  </form>
 
-  <div id="message"></div>
+<h2>Enter Voucher</h2>
+
+<input id="voucher" placeholder="Voucher Code" />
+<button onclick="login()">Connect</button>
+
+<script>
+async function login() {
+
+    const voucherCode = document.getElementById("voucher").value;
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const apMac = urlParams.get("apMac");
+    const clientMac = urlParams.get("clientMac");
+
+    const res = await fetch("http://127.0.0.1:8000/proxy/login/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            apMac,
+            clientMac,
+            voucherCode
+        })
+    });
+
+    const data = await res.json();
+
+    console.log(data);
+
+    if (data.success) {
+        alert("Connected!");
+        window.location.href = data.redirectUrl || "http://google.com";
+    } else {
+        alert("Invalid voucher");
+    }
+}
+</script>
+
 </body>
 </html>
