@@ -1,0 +1,6 @@
+@GdmsProxy_HostAddress = http://localhost:5186
+
+GET {{GdmsProxy_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

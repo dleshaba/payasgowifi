@@ -1,0 +1,12 @@
+# Visual Studio
+.vs/
+Backend/.vs/
+
+# Build output
+bin/
+obj/
+
+# User/system files
+*.user
+*.suo
+*.vsidx
